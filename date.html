@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dosa Date ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fff1eb, #ace0f9);
+        }
+
+        .card {
+            width: 100%;
+            max-width: 520px;
+            background: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            animation: appear 0.7s ease;
+        }
+
+        .emoji {
+            font-size: 70px;
+            animation: float 2.5s infinite ease-in-out;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin: 15px 0;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        button {
+            border: none;
+            padding: 14px 25px;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Yes / No */
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .yes {
+            background: #28a745;
+            color: white;
+        }
+
+        .no {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Sections */
+
+        .section {
+            display: none;
+            animation: appear 0.6s ease;
+        }
+
+        /* Time */
+
+        .time-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .time-btn {
+            background: #f4f4f4;
+            border: 2px solid #ddd;
+            color: #333;
+        }
+
+        .time-btn:hover {
+            background: #ff8a65;
+            color: white;
+            border-color: #ff8a65;
+        }
+
+        /* Food */
+
+        .food-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .food-btn {
+            background: #fff7f2;
+            border: 2px solid #eee;
+            padding: 18px 10px;
+            font-size: 17px;
+        }
+
+        .food-btn:hover {
+            background: #ff8a65;
+            color: white;
+        }
+
+        /* Final */
+
+        .thank-you {
+            display: none;
+            animation: appear 0.7s ease;
+        }
+
+        .heart {
+            font-size: 80px;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        .final-details {
+            background: #fff7f2;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .final-details p {
+            margin: 8px;
+        }
+
+        /* Animations */
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .card {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .time-options,
+            .food-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <!-- STEP 1 -->
+
+        <div id="question">
+
+            <div class="emoji">🥞</div>
+
+            <h1>Are you free tomorrow?</h1>
+
+            <p>
+                Would you like to go out for a dosa sometime?
+                It would be nice to spend some time together
+                and enjoy a good dosa. 😊
+            </p>
+
+            <div class="buttons">
+
+                <button class="yes" onclick="showTime()">
+                    Yes 😊
+                </button>
+
+                <button class="no" onclick="sayNo()">
+                    No
+                </button>
+
+            </div>
+
+            <p id="noMessage"></p>
+
+        </div>
+
+
+        <!-- STEP 2: TIME -->
+
+        <div id="timeSection" class="section">
+
+            <div class="emoji">⏰</div>
+
+            <h2>What time works for you?</h2>
+
+            <p>
+                Please choose a time that is convenient for you.
+            </p>
+
+            <div class="time-options">
+
+                <button class="time-btn"
+                        onclick="selectTime('10:00 AM')">
+                    10:00 AM
+                </button>
+
+                <button class="time-btn"
+                        onclick="selectTime('12:00 PM')">
+                    12:00 PM
+                </button>
+
+                <button class="time-btn"
+                        onclick="selectTime('5:00 PM')">
+                    5:00 PM
+                </button>
+
+                <button class="time-btn"
+                        onclick="selectTime('7:00 PM')">
+                    7:00 PM
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 3: FOOD -->
+
+        <div id="foodSection" class="section">
+
+            <div class="emoji">🍽️</div>
+
+            <h2>What would you like to have?</h2>
+
+            <p>
+                You choose the food! 😊
+            </p>
+
+            <div class="food-options">
+
+                <button class="food-btn"
+                        onclick="selectFood('Masala Dosa 🥞')">
+                    🥞 Masala Dosa
+                </button>
+
+                <button class="food-btn"
+                        onclick="selectFood('Plain Dosa 🥞')">
+                    🥞 Plain Dosa
+                </button>
+
+                <button class="food-btn"
+                        onclick="selectFood('Idli & Vada 🍽️')">
+                    🍽️ Idli & Vada
+                </button>
+
+                <button class="food-btn"
+                        onclick="selectFood('Set Dosa 🥞')">
+                    🥞 Set Dosa
+                </button>
+
+                <button class="food-btn"
+                        onclick="selectFood('Pani Puri 😋')">
+                    😋 Pani Puri
+                </button>
+
+                <button class="food-btn"
+                        onclick="selectFood('Anything You Like ❤️')">
+                    ❤️ Your Choice
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 4: THANK YOU -->
+
+        <div id="thankYou" class="thank-you">
+
+            <div class="heart">❤️</div>
+
+            <h1>Thank You!</h1>
+
+            <p>
+                I'm looking forward to spending some time
+                together. 😊
+            </p>
+
+            <div class="final-details">
+
+                <p>
+                    <strong>⏰ Time:</strong>
+                    <span id="finalTime"></span>
+                </p>
+
+                <p>
+                    <strong>🍽️ Food:</strong>
+                    <span id="finalFood"></span>
+                </p>
+
+            </div>
+
+            <p>
+                See you tomorrow! 🥞✨
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let selectedTime = "";
+
+        /* YES button */
+
+        function showTime() {
+
+            document.getElementById("question").style.display = "none";
+
+            document.getElementById("timeSection").style.display = "block";
+        }
+
+
+        /* NO button */
+
+        function sayNo() {
+
+            document.getElementById("noMessage").innerText =
+                "No worries! Maybe another day 😊";
+        }
+
+
+        /* Select time */
+
+        function selectTime(time) {
+
+            selectedTime = time;
+
+            document.getElementById("timeSection").style.display = "none";
+
+            document.getElementById("foodSection").style.display = "block";
+        }
+
+
+        /* Select food */
+
+        function selectFood(food) {
+
+            document.getElementById("foodSection").style.display = "none";
+
+            document.getElementById("thankYou").style.display = "block";
+
+            document.getElementById("finalTime").innerText =
+                selectedTime;
+
+            document.getElementById("finalFood").innerText =
+                food;
+        }
+
+    </script>
+
+</body>
+</html>
